@@ -2,7 +2,12 @@ import random
 
 
 def main():
-    print("Hola Mundo")
+    print(make_sentence(1, "past"))
+    print(make_sentence(1, "present"))
+    print(make_sentence(1, "future"))
+    print(make_sentence(3, "past"))
+    print(make_sentence(3, "present"))
+    print(make_sentence(3, "future"))
 
 
 def get_determiner(quantity):
@@ -72,9 +77,10 @@ def get_noun(quantity):
             "rabbits",
             "women",
         ]
-        
+
     word = random.choice(words)
     return word
+
 
 def get_verb(quantity, tense):
     """Return a randomly chosen verb. If tense is "past",
@@ -102,6 +108,78 @@ def get_verb(quantity, tense):
             either "past", "present" or "future".
     Return: a randomly chosen verb.
     """
-    
-    
+
+    if tense == "past":
+        words = [
+            "drank",
+            "ate",
+            "grew",
+            "laughed",
+            "thought",
+            "ran",
+            "slept",
+            "talked",
+            "walked",
+            "wrote",
+        ]
+    elif tense == "present" and quantity == 1:
+        words = [
+            "drinks",
+            "eats",
+            "grows",
+            "laughs",
+            "thinks",
+            "runs",
+            "sleeps",
+            "talks",
+            "walks",
+            "writes",
+        ]
+    elif tense == "present" and quantity != 1:
+        words = [
+            "drink",
+            "eat",
+            "grow",
+            "laugh",
+            "think",
+            "run",
+            "sleep",
+            "talk",
+            "walk",
+            "write",
+        ]
+    elif tense == "future":
+        words = [
+            "will drink",
+            "will eat",
+            "will grow",
+            "will laugh",
+            "will think",
+            "will run",
+            "will sleep",
+            "will talk",
+            "will walk",
+            "will write",
+        ]
+    word = random.choice(words)
+    return word
+
+
+def make_sentence(quantity, tense):
+    """Build and return a sentence with three words:
+    a determiner, a noun, and a verb. The grammatical
+    quantity of the determiner and noun will match the
+    number in the quantity parameter. The grammatical
+    quantity and tense of the verb will match the number
+    and tense in the quantity and tense parameters.
+    """
+
+    determiner = get_determiner(quantity)
+    noun = get_noun(quantity)
+    verb = get_verb(quantity, tense)
+    sentence = f"{determiner} {noun} {verb}".capitalize()
+
+    return sentence
+
+
 main()
