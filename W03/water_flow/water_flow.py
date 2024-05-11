@@ -45,9 +45,8 @@ def pressure_loss_from_pipe_reduction(larger_diameter, fluid_velocity, reynolds_
     density_water = 998.2  # kg/m^3
     
     # Calculate k using the first formula
-    k = 0.1 + (50 / reynolds_number) * ((larger_diameter / smaller_diameter)**4 - 1)
-    print(k)
-    print(-k)
+    k = (0.1 + (50 / reynolds_number)) * (((larger_diameter / smaller_diameter)**4) - 1)
+
     # Calculate pressure loss using the second formula
     pressure_loss = (-k * density_water * fluid_velocity**2) / 2000
     
